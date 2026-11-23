@@ -1,12 +1,18 @@
 @use 'variables' as v;
 
+$banner-shade: #1b1512;
+
 .home-feature {
+  --shade-width: 72%;
+  --shade-height: 68%;
   display: grid;
   align-items: end;
   min-height: clamp(21rem, 29vw, 23.5rem);
   border-radius: v.$radius;
   background:
-    linear-gradient(to bottom, transparent 23%, rgba(v.$ink, .78) 52%, rgba(v.$ink, .95)),
+    radial-gradient(ellipse var(--shade-width) var(--shade-height) at 50% 91%,
+      rgba($banner-shade, .84) 0%, rgba($banner-shade, .73) 45%,
+      rgba($banner-shade, .6) 65%, rgba($banner-shade, .23) 85%, transparent 100%),
     v.$ink url('../assets/images/groceries.webp') center 15% / cover no-repeat;
   color: v.$surface;
 }
@@ -14,6 +20,8 @@
 .feature-copy {
   padding: 1rem clamp(1.1rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2.25rem);
   text-align: center;
+
+  h1, p { text-shadow: 0 1px .45rem rgba($banner-shade, .7); }
 
   h1 {
     max-width: 53rem;
@@ -87,10 +95,9 @@
 
 @media (max-width: v.$mobile) {
   .home-feature {
+    --shade-width: 104%;
+    --shade-height: 79%;
     min-height: 20rem;
-    background-image:
-      linear-gradient(to bottom, transparent 12%, rgba(v.$ink, .79) 37%, rgba(v.$ink, .95)),
-      url('../assets/images/groceries.webp');
     background-position: center, 56% center;
   }
   .home-stores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
