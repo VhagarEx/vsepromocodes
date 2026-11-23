@@ -2,20 +2,28 @@
 
 .home-feature {
   display: grid;
-  align-items: center;
+  align-items: end;
   min-height: clamp(21rem, 29vw, 23.5rem);
   border-radius: v.$radius;
   background:
-    linear-gradient(90deg, rgba(v.$ink, .96), rgba(v.$ink, .83) 37%, rgba(v.$ink, .18) 78%),
-    v.$ink url('../assets/images/groceries.webp') center 52% / cover no-repeat;
+    linear-gradient(to bottom, transparent 23%, rgba(v.$ink, .78) 52%, rgba(v.$ink, .95)),
+    v.$ink url('../assets/images/groceries.webp') center 15% / cover no-repeat;
   color: v.$surface;
 }
 
 .feature-copy {
-  padding: clamp(1.4rem, 5vw, 3rem);
+  padding: 1rem clamp(1.1rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2.25rem);
+  text-align: center;
 
-  h1 { max-width: 28rem; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1.07; }
-  p { max-width: 23rem; margin-block: .85rem 1.2rem; }
+  h1 {
+    max-width: 53rem;
+    margin-inline: auto;
+    font-size: clamp(2rem, 4vw, 3.35rem);
+    line-height: 1.07;
+    text-wrap: balance;
+  }
+
+  p { max-width: 36rem; margin: .75rem auto 1rem; text-wrap: balance; }
 
   .button {
     background: v.$parchment;
@@ -79,9 +87,9 @@
 
 @media (max-width: v.$mobile) {
   .home-feature {
-    min-height: 18rem;
+    min-height: 20rem;
     background-image:
-      linear-gradient(100deg, rgba(v.$ink, .93), rgba(v.$ink, .68)),
+      linear-gradient(to bottom, transparent 12%, rgba(v.$ink, .79) 37%, rgba(v.$ink, .95)),
       url('../assets/images/groceries.webp');
     background-position: center, 56% center;
   }
