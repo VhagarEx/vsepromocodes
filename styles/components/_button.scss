@@ -7,7 +7,7 @@
   min-height: 2.9rem;
   padding: .65rem 1rem;
   border: 1px solid transparent;
-  border-radius: 11px;
+  border-radius: 8px;
   background: v.$primary;
   color: white;
   font: inherit;
@@ -18,7 +18,5 @@
   &:hover { background: v.$primary-hover; }
 }
 
-.button-light { background: v.$mint; color: #243728; }
-.button-light:hover { background: v.$mint-light; }
 .button-outline { background: v.$surface; color: v.$primary; border-color: v.$primary-line; }
 .button-outline:hover { background: v.$primary-soft; }

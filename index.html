@@ -21,28 +21,18 @@
     </div>
   </header>
   <main id="main" class="container page">
-    <section class="hero">
-      <div class="hero-copy">
-        <h1>Скидки на еду<br>и продукты<span>.</span></h1>
-        <p>Промокоды и акции на доставку из магазинов и ресторанов.</p>
-        <a class="button button-light" href="catalog.html">Смотреть каталог</a>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="hero-ticket hero-ticket-back"></div>
-        <div class="hero-ticket"><span>%</span></div>
-      </div>
+    <section class="home-intro">
+      <h1>Промокоды на доставку еды</h1>
+      <p>Скидки на заказы из магазинов и ресторанов.</p>
     </section>
-    <section class="section" aria-labelledby="stores-heading">
-      <h2 id="stores-heading">Магазины и сервисы</h2>
-      <div class="store-grid" id="stores"></div>
-    </section>
+    <nav class="store-grid" id="stores" aria-label="Магазины и сервисы"></nav>
     <section class="section" aria-labelledby="offers-heading">
       <div class="section-heading">
-        <h2 id="offers-heading">Из каталога</h2>
+        <h2 id="offers-heading">Предложения</h2>
         <a href="catalog.html">Все предложения</a>
       </div>
-      <div class="offer-grid" id="offers"></div>
-    <noscript><p>Включите JavaScript, чтобы посмотреть предложения.</p></noscript>
+      <div class="offer-grid home-offers" id="offers"></div>
+      <noscript><p>Включите JavaScript, чтобы посмотреть предложения.</p></noscript>
     </section>
     <dialog class="offer-dialog" id="offer-dialog" aria-labelledby="offer-heading">
       <div class="dialog-inner">

@@ -9,11 +9,7 @@ const count = document.querySelector('#results-count');
 const cardTemplate = document.createElement('template');
 cardTemplate.innerHTML = `
   <article class="offer-card">
-    <div class="offer-header">
-      <img class="offer-logo" alt="">
-      <p class="offer-badge"></p>
-    </div>
-    <p class="offer-discount"></p>
+    <img class="offer-logo" alt="">
     <h3></h3>
     <p class="offer-date"></p>
   </article>
@@ -23,16 +19,13 @@ function makeCard(offer) {
   const card = cardTemplate.content.firstElementChild.cloneNode(true);
   const store = stores[offer.store];
   const logo = card.querySelector('img');
-  const badge = card.querySelector('.offer-badge');
 
   logo.src = 'assets/logos/' + store.logo;
   logo.alt = store.name;
-  card.querySelector('.offer-discount').textContent = offer.discount;
   card.querySelector('h3').textContent = offer.title;
   card.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
 
   if (offer.type === 'code') {
-    badge.textContent = 'Промокод';
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'button';
@@ -40,8 +33,6 @@ function makeCard(offer) {
     button.addEventListener('click', () => openOffer(offer));
     card.append(button);
   } else {
-    badge.textContent = 'Акция';
-    badge.classList.add('offer-badge-link');
     const link = document.createElement('a');
     link.className = 'button button-outline';
     link.href = offer.url;
@@ -73,7 +64,8 @@ if (storeGrid) {
     link.append(logo);
     storeGrid.append(link);
   }
-  showOffers(offers.slice(0, 3));
+  const featuredOffers = Object.keys(stores).map((id) => offers.find((offer) => offer.store === id));
+  showOffers(featuredOffers.filter(Boolean));
 }
 
 if (storeFilter) {
