@@ -53,10 +53,15 @@ function showOffers(items) {
   }
 }
 
-function catalogUrl(store, type = 'all') {
+function normalizeSearch(value) {
+  return value.normalize('NFC').toLowerCase().replaceAll('ё', 'е');
+}
+
+function catalogUrl(store, type = 'all', search = '') {
   const query = new URLSearchParams();
   if (store) query.set('store', store);
   if (type !== 'all') query.set('type', type);
+  if (search) query.set('q', search);
   return query.size ? 'catalog.html?' + query : 'catalog.html';
 }
 
@@ -77,6 +82,15 @@ if (storeFilter) {
   }
 
   const query = new URLSearchParams(location.search);
+  const search = (query.get('q') ?? '').trim().slice(0, 100);
+  const searchWords = search ? normalizeSearch(search).split(/\s+/) : [];
+  const searchInput = document.querySelector('#site-search');
+  const searchContext = document.querySelector('#search-context');
+  const searchQuery = document.querySelector('#search-query');
+  const clearSearch = document.querySelector('#clear-search');
+  searchInput.value = search;
+  searchContext.hidden = !search;
+  searchQuery.textContent = search;
   const selectedStore = query.get('store');
   if (Object.hasOwn(stores, selectedStore)) storeFilter.value = selectedStore;
 
@@ -89,7 +103,7 @@ if (storeFilter) {
     const store = storeFilter.value;
 
     for (const link of links) {
-      link.href = catalogUrl(link.dataset.store, type);
+      link.href = catalogUrl(link.dataset.store, type, search);
       if (link.dataset.store === store) {
         link.setAttribute('aria-current', 'true');
       } else {
@@ -99,14 +113,19 @@ if (storeFilter) {
 
     for (const filter of filters) filter.setAttribute('aria-pressed', filter.dataset.filter === type);
 
-    showOffers(offers.filter((offer) =>
-      (type === 'all' || offer.type === type) &&
-      (!store || offer.store === store)
-    ));
+    clearSearch.href = catalogUrl(store, type);
+
+    showOffers(offers.filter((offer) => {
+      if (type !== 'all' && offer.type !== type) return false;
+      if (store && offer.store !== store) return false;
+
+      const searchable = normalizeSearch([stores[offer.store].name, offer.title, offer.code].join(' '));
+      return searchWords.every((word) => searchable.includes(word));
+    }));
   }
 
   function updateFilters() {
-    history.replaceState(null, '', catalogUrl(storeFilter.value, type));
+    history.replaceState(null, '', catalogUrl(storeFilter.value, type, search));
     applyFilters();
   }
 
