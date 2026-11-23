@@ -1,0 +1,11 @@
+{
+  "name": "vsepromocodes",
+  "private": true,
+  "scripts": {
+    "dev": "sass --watch --no-source-map styles/main.scss styles/site.css",
+    "build": "sass --no-source-map styles/main.scss styles/site.css"
+  },
+  "devDependencies": {
+    "sass": "^1.89.0"
+  }
+}
