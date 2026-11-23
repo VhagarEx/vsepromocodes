@@ -3,9 +3,12 @@
 .site-header {
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid v.$line;
-  background: v.$surface;
-  color: v.$ink;
+  background: v.$chestnut;
+  color: v.$surface;
+
+  .brand:focus-visible,
+  .site-nav > a:focus-visible,
+  summary:focus-visible { outline-color: v.$parchment; }
 }
 
 .header-content {
@@ -22,7 +25,7 @@
   align-items: center;
   gap: .35rem;
   width: fit-content;
-  color: v.$ink;
+  color: inherit;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -.01em;
@@ -33,7 +36,7 @@
     display: block;
     width: 2.4rem;
     height: 2.4rem;
-    background: v.$primary;
+    background: v.$parchment;
     mask: url('../assets/logos/vsepromocodes.webp') center / contain no-repeat;
   }
 }
@@ -49,14 +52,14 @@
   min-height: 2.75rem;
   padding: .35rem .5rem;
   border-radius: 5px;
-  color: v.$ink;
+  color: inherit;
   font-size: .875rem;
   font-weight: 650;
   text-decoration: none;
   white-space: nowrap;
 
-  &:hover { background: v.$primary-soft; color: v.$primary-hover; }
-  &[aria-current='page'] { color: v.$primary-hover; text-decoration: underline; }
+  &:hover { background: rgba(v.$surface, .14); }
+  &[aria-current='page'] { color: v.$parchment; text-decoration: underline; }
 }
 
 .header-menu summary {
@@ -74,7 +77,7 @@
   }
 }
 
-.header-menu[open] summary { background: v.$primary-soft; color: v.$primary-hover; }
+.header-menu[open] summary { background: rgba(v.$surface, .14); }
 
 .menu-panel {
   position: absolute;
@@ -116,7 +119,7 @@
   border: 1px solid v.$input-line;
   background: v.$surface;
 
-  &:focus-within { outline: 2px solid v.$focus; outline-offset: 2px; }
+  &:focus-within { outline: 2px solid v.$parchment; outline-offset: 2px; }
 
   input {
     width: 100%;

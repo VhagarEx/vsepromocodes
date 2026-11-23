@@ -1,7 +1,8 @@
 @use 'sass:color';
 
 $ink: #42313a;
-$primary-hover: #6c2d2c;
+$chestnut: #6c2d2c;
+$primary-hover: $chestnut;
 $primary: #9f4636;
 $parchment: #f1dcc9;
 $surface: #fff;

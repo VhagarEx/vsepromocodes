@@ -2,8 +2,7 @@
 
 .container { width: min(100% - 3rem, 72rem); margin-inline: auto; }
 .page { flex: 1; padding-block: 2rem 4rem; }
-.site-footer { background: v.$surface; }
-.site-footer { border-top: 1px solid v.$line; color: v.$muted; }
+.site-footer { background: v.$chestnut; color: v.$parchment; }
 
 .footer-content {
   display: flex;
@@ -17,7 +16,7 @@
   padding-block: .75rem;
   font-size: .875rem;
   flex-wrap: wrap;
-  span { font-weight: 700; color: v.$ink; }
+  span { font-weight: 700; color: v.$surface; }
 }
 
 .directory-intro {
