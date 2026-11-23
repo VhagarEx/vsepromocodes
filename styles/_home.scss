@@ -5,8 +5,8 @@
   grid-template-columns: 1.12fr 1fr;
   overflow: hidden;
   border-radius: v.$radius;
-  background: #15315e;
-  color: white;
+  background: v.$parchment;
+  color: v.$ink;
 }
 
 .feature-copy {
@@ -14,14 +14,12 @@
   padding: clamp(1.4rem, 5vw, 3rem);
 
   h1 { max-width: 28rem; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1.07; }
-  p { max-width: 23rem; margin-block: .85rem 1.2rem; color: #e2eafa; }
-  .button { background: white; color: v.$primary; }
-  .button:hover { background: #e2eafa; }
+  p { max-width: 23rem; margin-block: .85rem 1.2rem; color: v.$ink; }
 }
 
 .feature-photo {
   min-height: 15rem;
-  background: #efd1ac url('../assets/images/groceries.webp') center / cover no-repeat;
+  background: v.$parchment url('../assets/images/groceries.webp') center / cover no-repeat;
 }
 
 .home-section { margin-top: 2rem; }

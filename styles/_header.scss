@@ -3,10 +3,9 @@
 .site-header {
   position: relative;
   z-index: 1;
-  background: #132e56;
-  color: white;
-
-  :focus-visible { outline-color: #ffd28c; }
+  border-bottom: 1px solid v.$line;
+  background: v.$surface;
+  color: v.$ink;
 }
 
 .header-content {
@@ -23,14 +22,20 @@
   align-items: center;
   gap: .35rem;
   width: fit-content;
-  color: white;
+  color: v.$ink;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -.01em;
   white-space: nowrap;
   text-decoration: none;
 
-  img { width: 2.4rem; height: 2.4rem; }
+  .brand-mark {
+    display: block;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: v.$primary;
+    mask: url('../assets/logos/vsepromocodes.webp') center / contain no-repeat;
+  }
 }
 
 .site-nav { display: flex; align-items: center; gap: .1rem; }
@@ -44,14 +49,14 @@
   min-height: 2.75rem;
   padding: .35rem .5rem;
   border-radius: 5px;
-  color: white;
+  color: v.$ink;
   font-size: .875rem;
   font-weight: 650;
   text-decoration: none;
   white-space: nowrap;
 
-  &:hover { background: #244775; }
-  &[aria-current='page'] { text-decoration: underline; }
+  &:hover { background: v.$primary-soft; color: v.$primary-hover; }
+  &[aria-current='page'] { color: v.$primary-hover; text-decoration: underline; }
 }
 
 .header-menu summary {
@@ -69,7 +74,7 @@
   }
 }
 
-.header-menu[open] summary { background: #244775; }
+.header-menu[open] summary { background: v.$primary-soft; color: v.$primary-hover; }
 
 .menu-panel {
   position: absolute;
@@ -83,7 +88,7 @@
   border: 1px solid v.$line;
   border-radius: 7px;
   background: v.$surface;
-  box-shadow: 0 .5rem 1.5rem #13294426;
+  box-shadow: 0 .5rem 1.5rem rgba(v.$ink, .15);
   list-style: none;
 
   a {
@@ -108,9 +113,10 @@
   grid-template-columns: minmax(0, 1fr) auto;
   overflow: hidden;
   border-radius: 6px;
-  background: white;
+  border: 1px solid v.$input-line;
+  background: v.$surface;
 
-  &:focus-within { outline: 2px solid #ffd28c; outline-offset: 2px; }
+  &:focus-within { outline: 2px solid v.$focus; outline-offset: 2px; }
 
   input {
     width: 100%;
@@ -128,10 +134,10 @@
     place-items: center;
     width: 2.8rem;
     border: 0;
-    background: #dfeafd;
+    background: v.$primary-soft;
     color: v.$primary;
 
-    &:hover { background: #c8dbf7; }
+    &:hover { background: v.$parchment; }
     &:focus-visible { outline: 2px solid v.$focus; outline-offset: -3px; }
   }
 }

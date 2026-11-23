@@ -46,11 +46,6 @@
   padding: .75rem;
   border-radius: (v.$radius - 1px) (v.$radius - 1px) 0 0;
   background: v.$primary-soft;
-
-  &.cover-pyaterochka { background: #faece9; }
-  &.cover-samokat { background: #fce9ee; }
-  &.cover-eda { background: #fff0d6; }
-  &.cover-lavka { background: #e8f5fc; }
 }
 
 .offer-logo { width: min(100%, 10rem); height: 2.8rem; object-fit: contain; }

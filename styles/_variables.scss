@@ -1,16 +1,20 @@
-$ink: #172334;
-$muted: #526276;
-$background: #fff;
+@use 'sass:color';
+
+$ink: #42313a;
+$primary-hover: #6c2d2c;
+$primary: #9f4636;
+$parchment: #f1dcc9;
 $surface: #fff;
-$line: #dce3ec;
-$input-line: #8797ad;
-$primary: #173b75;
-$primary-hover: #102d5e;
-$primary-soft: #edf3fb;
-$primary-line: #98b1d1;
-$focus: #1d58a7;
-$error: #ae2146;
-$success: #1c5b92;
+$background: color.mix($parchment, $surface, $weight: 30%);
+
+$muted: color.mix($ink, $surface, $weight: 78%);
+$line: color.mix($ink, $parchment, $weight: 16%);
+$input-line: color.mix($ink, $parchment, $weight: 63%);
+$primary-soft: color.mix($parchment, $surface, $weight: 45%);
+$primary-line: color.mix($primary, $parchment, $weight: 60%);
+$focus: $primary;
+$error: $primary-hover;
+$success: $ink;
 $radius: 10px;
 $mobile: 640px;
 $tablet: 920px;

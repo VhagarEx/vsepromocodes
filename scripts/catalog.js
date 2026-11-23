@@ -23,7 +23,6 @@ function makeCard(offer) {
   card.append(cardTemplate.content.cloneNode(true));
 
   const store = stores[offer.store];
-  card.querySelector('.offer-cover').classList.add('cover-' + offer.store);
   card.querySelector('img').src = 'assets/logos/' + store.logo;
   card.querySelector('.offer-store').textContent = store.name;
   card.querySelector('h3').textContent = offer.title;

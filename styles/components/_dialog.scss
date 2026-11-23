@@ -10,9 +10,9 @@ body:has(.offer-dialog[open]) { overflow: hidden; }
   border-radius: 14px;
   background: v.$surface;
   color: v.$ink;
-  box-shadow: 0 14px 56px #162b4740;
+  box-shadow: 0 14px 56px rgba(v.$ink, .23);
 
-  &::backdrop { background: #14274086; }
+  &::backdrop { background: rgba(v.$ink, .55); }
 }
 
 .dialog-inner {
