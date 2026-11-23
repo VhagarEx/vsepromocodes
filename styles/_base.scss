@@ -10,12 +10,12 @@ body {
   flex-direction: column;
   background: v.$background;
   color: v.$ink;
-  font: 1rem/1.5 system-ui, sans-serif;
+  font: 1rem/1.5 'Golos Text', Arial, sans-serif;
 }
 
 h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { line-height: 1.15; }
-h1 { font-size: clamp(1.65rem, 4vw, 2.35rem); letter-spacing: -.03em; }
+h1 { font-size: clamp(1.65rem, 4vw, 2.35rem); letter-spacing: -.02em; }
 h2 { font-size: clamp(1.25rem, 3vw, 1.65rem); letter-spacing: -.02em; }
 a { color: v.$primary; text-underline-offset: .2em; }
 button, input, select { font: inherit; }
