@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог — Все промокоды</title>
+  <link rel="stylesheet" href="styles/site.css">
+  <script type="module" src="scripts/catalog.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="index.html" aria-label="Все промокоды, главная"><span class="brand-mark" aria-hidden="true">%</span> все<span class="brand-accent">промокоды</span></a>
+      <nav class="site-nav" aria-label="Основная">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html" aria-current="page">Каталог</a>
+        <a href="register.html">Регистрация</a>
+        <a href="login.html">Вход</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="container page">
+    <section class="catalog-intro">
+      <h1>Каталог предложений</h1>
+      <p>Промокоды и акции на доставку еды и продуктов.</p>
+    </section>
+    <section aria-label="Предложения">
+      <div class="catalog-controls">
+        <div class="catalog-filters" role="group" aria-label="Тип предложения">
+          <button type="button" data-filter="all" aria-pressed="true">Все</button>
+          <button type="button" data-filter="code" aria-pressed="false">Промокоды</button>
+          <button type="button" data-filter="link" aria-pressed="false">Акции</button>
+        </div>
+        <label class="store-filter">Магазин
+          <select id="store-filter"><option value="">Все магазины</option></select>
+        </label>
+      </div>
+      <p class="results-count" id="results-count" role="status"></p>
+      <div class="offer-grid" id="offers"></div>
+    <noscript><p>Включите JavaScript, чтобы посмотреть предложения.</p></noscript>
+    </section>
+    <dialog class="offer-dialog" id="offer-dialog" aria-labelledby="offer-heading">
+      <div class="dialog-inner">
+        <div class="dialog-header">
+          <p class="offer-badge">Промокод</p>
+          <form method="dialog"><button class="close-button" aria-label="Закрыть" autofocus>×</button></form>
+        </div>
+        <h2 id="offer-heading"></h2>
+        <p class="dialog-terms" id="offer-terms"></p>
+        <p class="offer-date" id="offer-date"></p>
+        <div class="code-box"><code id="offer-code"></code></div>
+        <button class="button" type="button" id="copy-code">Скопировать код</button>
+        <p class="copy-status" id="copy-status" role="status"></p>
+      </div>
+    </dialog>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span>Все промокоды</span>
+      <p>Учебный проект. Предложения демонстрационные.</p>
+    </div>
+  </footer>
+</body>
+</html>
