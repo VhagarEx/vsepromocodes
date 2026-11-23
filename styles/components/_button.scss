@@ -18,7 +18,7 @@
   &:hover { background: v.$primary-hover; }
 }
 
-.button-light { background: #c6ffd9; color: #243728; }
-.button-light:hover { background: #e0ffea; }
-.button-outline { background: v.$surface; color: v.$primary; border-color: #cfc4f0; }
+.button-light { background: v.$mint; color: #243728; }
+.button-light:hover { background: v.$mint-light; }
+.button-outline { background: v.$surface; color: v.$primary; border-color: v.$primary-line; }
 .button-outline:hover { background: v.$primary-soft; }

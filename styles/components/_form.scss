@@ -23,7 +23,7 @@
     width: 100%;
     min-height: 2.85rem;
     padding: .55rem .75rem;
-    border: 1px solid #a7a0b8;
+    border: 1px solid v.$input-line;
     border-radius: 10px;
     color: v.$ink;
     &[aria-invalid='true'] { border-color: v.$error; }

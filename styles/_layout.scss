@@ -71,12 +71,12 @@
   padding: clamp(1.5rem, 6vw, 4rem);
   border-radius: 28px;
   color: white;
-  background: radial-gradient(ellipse at 92% 0%, #8156df, transparent 64%), #332477;
+  background: radial-gradient(ellipse at 92% 0%, #207c70, transparent 64%), #103f3a;
   min-height: 22rem;
 
   h1 { font-size: clamp(2.5rem, 6vw, 4.8rem); }
-  h1 span { color: #c6ffd9; }
-  p { color: #eee8ff; max-width: 27rem; margin-block: .95rem 1.4rem; }
+  h1 span { color: v.$mint; }
+  p { color: #e2f5ee; max-width: 27rem; margin-block: .95rem 1.4rem; }
 }
 
 .hero-copy { position: relative; z-index: 1; }
@@ -88,15 +88,15 @@
   width: clamp(10rem, 22vw, 18rem);
   aspect-ratio: 1.6;
   border-radius: 1rem;
-  background: radial-gradient(circle at 0 50%, transparent .65rem, #c6ffd9 .7rem) left / 51% 100% no-repeat,
-              radial-gradient(circle at 100% 50%, transparent .65rem, #c6ffd9 .7rem) right / 51% 100% no-repeat;
-  color: #302473;
+  background: radial-gradient(circle at 0 50%, transparent .65rem, v.$mint .7rem) left / 51% 100% no-repeat,
+              radial-gradient(circle at 100% 50%, transparent .65rem, v.$mint .7rem) right / 51% 100% no-repeat;
+  color: #103f3a;
   transform: rotate(-12deg);
 
   span { font-size: clamp(4rem, 9vw, 7rem); line-height: 1; font-weight: 850; }
 }
 .hero-ticket-back {
-  background: #a993ef;
+  background: #6ab6a5;
   transform: translate(1.4rem, .7rem) rotate(14deg);
 }
 
