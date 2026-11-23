@@ -1,4 +1,4 @@
-import { stores } from './offers.js';
+import { storePageUrl, stores } from './offers.js';
 
 const storeMenu = document.querySelector('#header-stores');
 const menus = [...document.querySelectorAll('.header-menu')];
@@ -6,7 +6,7 @@ const menus = [...document.querySelectorAll('.header-menu')];
 for (const [id, store] of Object.entries(stores)) {
   const item = document.createElement('li');
   const link = document.createElement('a');
-  link.href = 'catalog.html?store=' + encodeURIComponent(id);
+  link.href = storePageUrl(id);
   link.textContent = store.name;
   item.append(link);
   storeMenu.append(item);

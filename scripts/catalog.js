@@ -1,4 +1,4 @@
-import { offers, stores } from './offers.js';
+import { offerTitle, offers, storePageUrl, stores } from './offers.js';
 import { openOffer, formatExpiry } from './offer-dialog.js';
 
 const list = document.querySelector('#offers');
@@ -25,7 +25,7 @@ function makeCard(offer) {
   const store = stores[offer.store];
   card.querySelector('img').src = 'assets/logos/' + store.logo;
   card.querySelector('.offer-store').textContent = store.name;
-  card.querySelector('h3').textContent = offer.title;
+  card.querySelector('h3').textContent = offerTitle(offer);
   card.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
 
   if (hasCode) {
@@ -118,7 +118,7 @@ if (storeFilter) {
       if (type !== 'all' && offer.type !== type) return false;
       if (store && offer.store !== store) return false;
 
-      const searchable = normalizeSearch([stores[offer.store].name, offer.title, offer.code].join(' '));
+      const searchable = normalizeSearch([stores[offer.store].name, offerTitle(offer), offer.code].join(' '));
       return searchWords.every((word) => searchable.includes(word));
     }));
   }
@@ -151,7 +151,7 @@ if (storeFilter) {
     const link = document.createElement('a');
     const logo = document.createElement('img');
     link.className = 'home-store';
-    link.href = catalogUrl(id);
+    link.href = storePageUrl(id);
     logo.alt = store.name;
     logo.src = 'assets/logos/' + store.logo;
     link.append(logo);

@@ -1,4 +1,4 @@
-import { stores } from './offers.js';
+import { offerTitle, stores } from './offers.js';
 
 const dialog = document.querySelector('#offer-dialog');
 const logo = dialog.querySelector('#offer-logo');
@@ -26,7 +26,7 @@ export function openOffer(offer) {
   logo.src = 'assets/logos/' + store.logo;
   logo.alt = store.name;
   details.open = false;
-  title.textContent = offer.title;
+  title.textContent = offerTitle(offer);
   terms.textContent = offer.terms;
   date.textContent = formatExpiry(offer.expires);
   code.textContent = offer.code;

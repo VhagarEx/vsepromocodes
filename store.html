@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Предложения магазина — Все промокоды</title>
+  <link rel="stylesheet" href="styles/site.css">
+  <script type="module" src="scripts/store.js"></script>
+  <script type="module" src="scripts/header.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Все промокоды</span>
+      </a>
+      <nav class="site-nav" aria-label="Каталог">
+        <a href="catalog.html">Каталог</a>
+        <details class="header-menu">
+          <summary>Магазины</summary>
+          <ul class="menu-panel" id="header-stores">
+            <li><a href="catalog.html">Все магазины</a></li>
+          </ul>
+        </details>
+        <details class="header-menu">
+          <summary>Предложения</summary>
+          <ul class="menu-panel">
+            <li><a href="catalog.html?type=code">Промокоды</a></li>
+            <li><a href="catalog.html?type=link">Акции</a></li>
+          </ul>
+        </details>
+      </nav>
+      <form class="header-search" role="search" action="catalog.html" method="get">
+        <input id="site-search" type="search" name="q" maxlength="100" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу">
+        <button type="submit" aria-label="Найти"><span class="search-icon" aria-hidden="true"></span></button>
+      </form>
+      <details class="header-menu account-menu">
+        <summary>Аккаунт</summary>
+        <ul class="menu-panel">
+          <li><a href="login.html">Вход</a></li>
+          <li><a href="register.html">Регистрация</a></li>
+        </ul>
+      </details>
+    </div>
+  </header>
+  <main id="main" class="container page">
+    <a class="store-back" href="catalog.html">Весь каталог</a>
+    <div class="store-layout" id="store-layout" hidden>
+      <section class="store-heading" aria-labelledby="store-heading">
+        <h1 id="store-heading"></h1>
+        <p role="status" id="store-count"></p>
+      </section>
+      <aside class="store-sidebar-panel">
+        <div class="store-logo-panel">
+          <img id="store-logo" alt="">
+        </div>
+        <div class="store-categories" role="group" aria-labelledby="store-categories-heading">
+          <h2 id="store-categories-heading">Категории</h2>
+          <button class="store-category" type="button" data-store-type="all" aria-pressed="true">
+            Все <span class="store-filter-count"></span>
+          </button>
+          <button class="store-category" type="button" data-store-type="code" aria-pressed="false">
+            Промокоды <span class="store-filter-count"></span>
+          </button>
+          <button class="store-category" type="button" data-store-type="link" aria-pressed="false">
+            Акции <span class="store-filter-count"></span>
+          </button>
+        </div>
+      </aside>
+      <section class="store-offers" aria-label="Предложения магазина">
+        <div class="store-offer-list" id="store-offers"></div>
+        <p class="store-empty" id="store-empty" hidden>В этой категории пока нет предложений.</p>
+      </section>
+    </div>
+    <section class="store-missing" id="store-missing" hidden>
+      <h1>Магазин не найден</h1>
+      <p>Выберите магазин в меню или посмотрите предложения в каталоге.</p>
+    </section>
+    <noscript><p>Включите JavaScript, чтобы посмотреть предложения магазина.</p></noscript>
+    <template id="store-offer-template">
+      <article class="offer-card store-offer">
+        <div class="store-offer-main">
+          <p class="store-offer-discount"></p>
+          <div class="store-offer-title">
+            <p class="store-offer-type"></p>
+            <h2></h2>
+            <p class="offer-date"></p>
+          </div>
+          <button class="button offer-code-button" type="button" hidden>Показать код</button>
+        </div>
+        <details class="store-offer-details">
+          <summary>Условия</summary>
+          <p class="store-offer-terms"></p>
+        </details>
+      </article>
+    </template>
+    <dialog class="offer-dialog" id="offer-dialog" aria-labelledby="offer-heading">
+      <div class="dialog-inner">
+        <form class="dialog-close" method="dialog">
+          <button class="close-button" aria-label="Закрыть" autofocus>×</button>
+        </form>
+        <img class="dialog-logo" id="offer-logo" alt="">
+        <h2 id="offer-heading"></h2>
+        <p class="offer-date" id="offer-date"></p>
+        <div class="code-box">
+          <code id="offer-code"></code>
+          <button class="button" type="button" id="copy-code">Скопировать код</button>
+        </div>
+        <p class="copy-status" id="copy-status" role="status"></p>
+      </div>
+      <details class="dialog-details" id="offer-details">
+        <summary>Условия промокода</summary>
+        <p id="offer-terms"></p>
+      </details>
+    </dialog>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span>Все промокоды</span>
+      <p>Учебный проект. Предложения демонстрационные.</p>
+    </div>
+  </footer>
+</body>
+</html>
