@@ -1,0 +1,81 @@
+@use 'variables' as v;
+
+.home-feature {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  overflow: hidden;
+  border-radius: v.$radius;
+  background: #15315e;
+  color: white;
+}
+
+.feature-copy {
+  align-self: center;
+  padding: clamp(1.4rem, 5vw, 3rem);
+
+  h1 { max-width: 28rem; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1.07; }
+  p { max-width: 23rem; margin-block: .85rem 1.2rem; color: #e2eafa; }
+  .button { background: white; color: v.$primary; }
+  .button:hover { background: #e2eafa; }
+}
+
+.feature-photo {
+  min-height: 15rem;
+  background: #efd1ac url('../assets/images/groceries.webp') center / cover no-repeat;
+}
+
+.home-section { margin-top: 2rem; }
+
+.home-stores, .offer-types {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .75rem;
+  margin-top: .85rem;
+}
+
+.home-store {
+  display: grid;
+  place-items: center;
+  min-height: 4.4rem;
+  padding: .75rem;
+  border: 1px solid v.$line;
+  border-radius: v.$radius;
+
+  &:hover { border-color: v.$primary; }
+
+  img { width: 8.5rem; height: 2rem; object-fit: contain; }
+}
+
+.offer-types { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.type-link {
+  display: grid;
+  gap: .3rem;
+  padding: 1.05rem;
+  border: 1px solid v.$line;
+  border-radius: v.$radius;
+  background: v.$primary-soft;
+  color: v.$ink;
+  text-decoration: none;
+
+  strong { color: v.$primary; }
+  &:hover strong { text-decoration: underline; }
+}
+
+.help-section {
+  max-width: 47rem;
+
+  h2 { margin-bottom: .75rem; }
+  details { border-top: 1px solid v.$line; }
+  details:last-child { border-bottom: 1px solid v.$line; }
+  summary { padding: .7rem 0; cursor: pointer; font-weight: 650; }
+  p { padding: 0 0 .75rem; color: v.$muted; }
+}
+
+@media (max-width: v.$mobile) {
+  .home-feature { grid-template-columns: 1fr; }
+  .feature-photo { min-height: 9rem; }
+  .home-stores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .offer-types { grid-template-columns: 1fr; }
+  .type-link { padding: .85rem; }
+}

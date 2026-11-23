@@ -5,28 +5,27 @@ const list = document.querySelector('#offers');
 const storeNav = document.querySelector('#stores');
 const storeFilter = document.querySelector('#store-filter');
 const count = document.querySelector('#results-count');
-const isCatalog = document.querySelector('[data-directory]').dataset.directory === 'catalog';
 
-const rowTemplate = document.createElement('template');
-rowTemplate.innerHTML = `
-  <article class="offer-row">
-    <img class="offer-logo" alt="">
+const cardTemplate = document.createElement('template');
+cardTemplate.innerHTML = `
+  <article class="offer-card">
+    <div class="offer-cover"><img class="offer-logo" alt=""></div>
     <div class="offer-info">
+      <p class="offer-store"></p>
       <h3></h3>
       <p class="offer-date"></p>
     </div>
   </article>
 `;
 
-function makeRow(offer) {
-  const row = rowTemplate.content.firstElementChild.cloneNode(true);
+function makeCard(offer) {
+  const card = cardTemplate.content.firstElementChild.cloneNode(true);
   const store = stores[offer.store];
-  const logo = row.querySelector('img');
-
-  logo.src = 'assets/logos/' + store.logo;
-  logo.alt = store.name;
-  row.querySelector('h3').textContent = offer.title;
-  row.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
+  card.querySelector('.offer-cover').classList.add('cover-' + offer.store);
+  card.querySelector('img').src = 'assets/logos/' + store.logo;
+  card.querySelector('.offer-store').textContent = store.name;
+  card.querySelector('h3').textContent = offer.title;
+  card.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
 
   if (offer.type === 'code') {
     const button = document.createElement('button');
@@ -34,20 +33,20 @@ function makeRow(offer) {
     button.className = 'button';
     button.textContent = 'Показать код';
     button.addEventListener('click', () => openOffer(offer));
-    row.append(button);
+    card.append(button);
   } else {
     const link = document.createElement('a');
     link.className = 'button button-outline';
     link.href = offer.url;
     link.textContent = 'Перейти к акции';
-    row.append(link);
+    card.append(link);
   }
 
-  return row;
+  return card;
 }
 
 function showOffers(items) {
-  list.replaceChildren(...items.map(makeRow));
+  list.replaceChildren(...items.map(makeCard));
   if (count) {
     count.textContent = items.length
       ? 'Найдено предложений: ' + items.length
@@ -55,8 +54,11 @@ function showOffers(items) {
   }
 }
 
-function catalogUrl(store) {
-  return store ? 'catalog.html?store=' + encodeURIComponent(store) : 'catalog.html';
+function catalogUrl(store, type = 'all') {
+  const query = new URLSearchParams();
+  if (store) query.set('store', store);
+  if (type !== 'all') query.set('type', type);
+  return query.size ? 'catalog.html?' + query : 'catalog.html';
 }
 
 function makeStoreLink(id, name) {
@@ -68,24 +70,27 @@ function makeStoreLink(id, name) {
   return link;
 }
 
-if (isCatalog) storeNav.append(makeStoreLink('', 'Все магазины'));
+if (storeFilter) {
+  storeNav.append(makeStoreLink('', 'Все магазины'));
+  for (const [id, store] of Object.entries(stores)) {
+    storeNav.append(makeStoreLink(id, store.name));
+    storeFilter.add(new Option(store.name, id));
+  }
 
-for (const [id, store] of Object.entries(stores)) {
-  storeNav.append(makeStoreLink(id, store.name));
-  storeFilter.add(new Option(store.name, id));
-}
-
-if (isCatalog) {
-  const selectedStore = new URLSearchParams(location.search).get('store');
+  const query = new URLSearchParams(location.search);
+  const selectedStore = query.get('store');
   if (Object.hasOwn(stores, selectedStore)) storeFilter.value = selectedStore;
 
   const links = [...storeNav.querySelectorAll('[data-store]')];
   const filters = [...document.querySelectorAll('[data-filter]')];
-  let type = 'all';
+  const selectedType = query.get('type');
+  let type = filters.some((filter) => filter.dataset.filter === selectedType) ? selectedType : 'all';
 
   function applyFilters() {
     const store = storeFilter.value;
+
     for (const link of links) {
+      link.href = catalogUrl(link.dataset.store, type);
       if (link.dataset.store === store) {
         link.setAttribute('aria-current', 'true');
       } else {
@@ -93,15 +98,16 @@ if (isCatalog) {
       }
     }
 
+    for (const filter of filters) filter.setAttribute('aria-pressed', filter.dataset.filter === type);
+
     showOffers(offers.filter((offer) =>
       (type === 'all' || offer.type === type) &&
       (!store || offer.store === store)
     ));
   }
 
-  function selectStore(id) {
-    storeFilter.value = id;
-    history.replaceState(null, '', catalogUrl(id));
+  function updateFilters() {
+    history.replaceState(null, '', catalogUrl(storeFilter.value, type));
     applyFilters();
   }
 
@@ -109,24 +115,31 @@ if (isCatalog) {
     link.addEventListener('click', (event) => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      selectStore(link.dataset.store);
+      storeFilter.value = link.dataset.store;
+      updateFilters();
     });
   }
 
   for (const filter of filters) {
     filter.addEventListener('click', () => {
       type = filter.dataset.filter;
-      for (const button of filters) button.setAttribute('aria-pressed', button === filter);
-      applyFilters();
+      updateFilters();
     });
   }
 
-  storeFilter.addEventListener('change', () => selectStore(storeFilter.value));
+  storeFilter.addEventListener('change', updateFilters);
   applyFilters();
 } else {
-  storeFilter.addEventListener('change', () => {
-    if (storeFilter.value) location.assign(catalogUrl(storeFilter.value));
-  });
+  for (const [id, store] of Object.entries(stores)) {
+    const link = document.createElement('a');
+    const logo = document.createElement('img');
+    link.className = 'home-store';
+    link.href = catalogUrl(id);
+    logo.alt = store.name;
+    logo.src = 'assets/logos/' + store.logo;
+    link.append(logo);
+    storeNav.append(link);
+  }
 
   const featuredOffers = Object.keys(stores).map((id) => offers.find((offer) => offer.store === id));
   showOffers(featuredOffers.filter(Boolean));

@@ -31,7 +31,7 @@
         <div class="store-filter">
           <label for="store-filter">Магазин</label>
           <select id="store-filter"><option value="">Все магазины</option></select>
-        </label>
+        </div>
         <noscript><p>Включите JavaScript, чтобы выбрать магазин.</p></noscript>
       </aside>
       <section aria-label="Предложения">
@@ -47,17 +47,22 @@
     </div>
     <dialog class="offer-dialog" id="offer-dialog" aria-labelledby="offer-heading">
       <div class="dialog-inner">
-        <div class="dialog-header">
-          <p class="offer-badge">Промокод</p>
-          <form method="dialog"><button class="close-button" aria-label="Закрыть" autofocus>×</button></form>
-        </div>
+        <form class="dialog-close" method="dialog">
+          <button class="close-button" aria-label="Закрыть" autofocus>×</button>
+        </form>
+        <img class="dialog-logo" id="offer-logo" alt="">
         <h2 id="offer-heading"></h2>
-        <p class="dialog-terms" id="offer-terms"></p>
         <p class="offer-date" id="offer-date"></p>
-        <div class="code-box"><code id="offer-code"></code></div>
-        <button class="button" type="button" id="copy-code">Скопировать код</button>
+        <div class="code-box">
+          <code id="offer-code"></code>
+          <button class="button" type="button" id="copy-code">Скопировать код</button>
+        </div>
         <p class="copy-status" id="copy-status" role="status"></p>
       </div>
+      <details class="dialog-details" id="offer-details">
+        <summary>Условия промокода</summary>
+        <p id="offer-terms"></p>
+      </details>
     </dialog>
   </main>
   <footer class="site-footer">

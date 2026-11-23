@@ -3,49 +3,72 @@
 body:has(.offer-dialog[open]) { overflow: hidden; }
 
 .offer-dialog {
-  width: min(100% - 2rem, 30rem);
+  width: min(100% - 2rem, 33rem);
   max-height: calc(100% - 2rem);
   padding: 0;
-  border: 0;
-  border-radius: v.$radius;
+  border: 1px solid v.$line;
+  border-radius: 14px;
   background: v.$surface;
   color: v.$ink;
-  box-shadow: 0 16px 64px #142f2c44;
+  box-shadow: 0 14px 56px #162b4740;
 
-  &::backdrop { background: #142f2c99; }
+  &::backdrop { background: #14274086; }
 }
 
 .dialog-inner {
+  position: relative;
   display: grid;
-  gap: .9rem;
-  padding: clamp(1rem, 5vw, 1.6rem);
+  justify-items: center;
+  gap: .7rem;
+  padding: 2.4rem 1.2rem 1.3rem;
+  text-align: center;
 }
 
-.dialog-header { display: flex; justify-content: space-between; align-items: center; }
-.dialog-terms { color: v.$muted; }
+.dialog-logo { width: 9rem; height: 3rem; object-fit: contain; }
+.dialog-close { position: absolute; inset: .3rem .3rem auto auto; }
 
 .close-button {
   width: 2.75rem;
   height: 2.75rem;
   border: 0;
-  border-radius: 10px;
-  background: v.$primary-soft;
-  color: v.$primary;
+  border-radius: 6px;
+  background: transparent;
+  color: v.$ink;
   font-size: 1.6rem;
   line-height: 1;
+  &:hover { background: v.$primary-soft; }
 }
 
 .code-box {
-  padding: .85rem;
-  border: 1px dashed v.$primary-line;
-  border-radius: 12px;
-  background: v.$primary-soft;
-  color: v.$primary;
-  text-align: center;
-  overflow-wrap: anywhere;
-  font-size: 1.32rem;
-  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 100%;
+  border: 1px solid v.$primary-line;
+  border-radius: 6px;
+
+  code {
+    align-content: center;
+    padding: .5rem .85rem;
+    background: v.$primary-soft;
+    color: v.$primary;
+    overflow-wrap: anywhere;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .button { border-radius: 0 5px 5px 0; }
 }
+
+.dialog-details {
+  background: v.$primary-soft;
+  padding: .85rem 1.15rem;
+
+  summary { cursor: pointer; font-weight: 650; }
+  p { margin-top: .45rem; color: v.$muted; }
+}
+
 .copy-status { color: v.$success; font-size: .875rem; }
 .copy-status:empty { display: none; }
 
@@ -56,7 +79,7 @@ body:has(.offer-dialog[open]) { overflow: hidden; }
     max-width: none;
     max-height: 90dvh;
     margin: 0;
-    border-radius: v.$radius v.$radius 0 0;
+    border-radius: 14px 14px 0 0;
   }
-  .dialog-inner { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .dialog-details { padding-bottom: max(.85rem, env(safe-area-inset-bottom)); }
 }

@@ -1,6 +1,6 @@
 @use 'variables' as v;
 
-.container { width: min(100% - 3rem, 66rem); margin-inline: auto; }
+.container { width: min(100% - 3rem, 72rem); margin-inline: auto; }
 .page { flex: 1; padding-block: 2rem 4rem; }
 .site-header, .site-footer { background: v.$surface; }
 .site-header { border-bottom: 1px solid v.$line; }
@@ -79,7 +79,7 @@
   font-size: .9rem;
   text-decoration: none;
 
-  &:hover { background: #f2f5f4; }
+  &:hover { background: v.$primary-soft; }
   &[aria-current='true'] {
     border-color: v.$primary;
     background: v.$primary-soft;

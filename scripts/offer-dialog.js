@@ -1,4 +1,8 @@
+import { stores } from './offers.js';
+
 const dialog = document.querySelector('#offer-dialog');
+const logo = dialog.querySelector('#offer-logo');
+const details = dialog.querySelector('#offer-details');
 const title = dialog.querySelector('#offer-heading');
 const terms = dialog.querySelector('#offer-terms');
 const date = dialog.querySelector('#offer-date');
@@ -18,6 +22,10 @@ export function formatExpiry(value) {
 }
 
 export function openOffer(offer) {
+  const store = stores[offer.store];
+  logo.src = 'assets/logos/' + store.logo;
+  logo.alt = store.name;
+  details.open = false;
   title.textContent = offer.title;
   terms.textContent = offer.terms;
   date.textContent = formatExpiry(offer.expires);
