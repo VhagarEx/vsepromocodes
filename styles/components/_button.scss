@@ -1,0 +1,24 @@
+@use '../variables' as v;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: .65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: v.$primary;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+
+  &:hover { background: v.$primary-hover; }
+}
+
+.button-light { background: #c6ffd9; color: #243728; }
+.button-light:hover { background: #e0ffea; }
+.button-outline { background: v.$surface; color: v.$primary; border-color: #cfc4f0; }
+.button-outline:hover { background: v.$primary-soft; }

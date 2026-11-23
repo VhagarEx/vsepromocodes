@@ -1,0 +1,35 @@
+@use 'variables' as v;
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: v.$background;
+  color: v.$ink;
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { line-height: 1.15; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -.05em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.03em; }
+a { color: v.$primary; text-underline-offset: .2em; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid v.$focus; outline-offset: 3px; }
+
+.skip-link {
+  position: fixed;
+  z-index: 2;
+  top: .5rem;
+  left: .5rem;
+  padding: .5rem 1rem;
+  background: v.$surface;
+  transform: translateY(-160%);
+  &:focus { transform: none; }
+}

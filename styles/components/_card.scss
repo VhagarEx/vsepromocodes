@@ -1,0 +1,60 @@
+@use '../variables' as v;
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.offer-card, .store-card {
+  background: v.$surface;
+  border: 1px solid v.$line;
+  border-radius: v.$radius;
+}
+
+.store-card {
+  display: grid;
+  min-height: 5rem;
+  place-items: center;
+  padding: .75rem;
+  &:hover { border-color: v.$focus; }
+}
+
+.store-logo { width: 8rem; height: 2rem; object-fit: contain; }
+.offer-logo { width: 7.5rem; height: 1.8rem; object-fit: contain; object-position: left center; }
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.15rem;
+  h3 { font-size: 1.17rem; margin: .3rem 0 .5rem; }
+  .button { margin-top: .95rem; }
+}
+
+.offer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+.offer-badge {
+  width: fit-content;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  background: v.$primary-soft;
+  color: v.$primary;
+  font-size: .8125rem;
+  font-weight: 700;
+}
+
+.offer-badge-link { background: #e2f7ed; color: #185742; }
+.offer-discount { color: v.$primary; font-size: 2.15rem; font-weight: 800; line-height: 1.1; letter-spacing: -.04em; }
+.offer-date { color: v.$muted; font-size: .875rem; }
+.offer-card .offer-date { margin-top: auto; }
+
+@media (max-width: v.$tablet) { .offer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: v.$mobile) { .offer-grid { grid-template-columns: 1fr; } }
