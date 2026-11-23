@@ -8,18 +8,20 @@ const count = document.querySelector('#results-count');
 
 const cardTemplate = document.createElement('template');
 cardTemplate.innerHTML = `
-  <article class="offer-card">
-    <div class="offer-cover"><img class="offer-logo" alt=""></div>
-    <div class="offer-info">
-      <p class="offer-store"></p>
-      <h3></h3>
-      <p class="offer-date"></p>
-    </div>
-  </article>
+  <div class="offer-cover"><img class="offer-logo" alt=""></div>
+  <div class="offer-info">
+    <p class="offer-store"></p>
+    <h3></h3>
+    <p class="offer-date"></p>
+  </div>
 `;
 
 function makeCard(offer) {
-  const card = cardTemplate.content.firstElementChild.cloneNode(true);
+  const hasCode = offer.type === 'code';
+  const card = document.createElement(hasCode ? 'article' : 'a');
+  card.className = 'offer-card';
+  card.append(cardTemplate.content.cloneNode(true));
+
   const store = stores[offer.store];
   card.querySelector('.offer-cover').classList.add('cover-' + offer.store);
   card.querySelector('img').src = 'assets/logos/' + store.logo;
@@ -27,19 +29,16 @@ function makeCard(offer) {
   card.querySelector('h3').textContent = offer.title;
   card.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
 
-  if (offer.type === 'code') {
+  if (hasCode) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'button';
+    button.className = 'button offer-code-button';
     button.textContent = 'Показать код';
     button.addEventListener('click', () => openOffer(offer));
-    card.append(button);
+    card.querySelector('.offer-info').append(button);
   } else {
-    const link = document.createElement('a');
-    link.className = 'button button-outline';
-    link.href = offer.url;
-    link.textContent = 'Перейти к акции';
-    card.append(link);
+    card.classList.add('offer-card-link');
+    card.href = offer.url;
   }
 
   return card;
