@@ -24,7 +24,8 @@
     <section class="account-card">
       <h1>Вход</h1>
       <p class="account-note">Учебная форма. Вход в аккаунт здесь не выполняется.</p>
-      <form class="account-form" id="login-form">
+      <noscript><p>Включите JavaScript, чтобы использовать форму.</p></noscript>
+      <form method="post" class="account-form" id="login-form">
         <div class="form-field">
           <label for="login">Логин или email</label>
           <input id="login" name="login" type="text" autocomplete="username" aria-describedby="login-error" required>
@@ -35,7 +36,7 @@
           <input id="password" name="password" type="password" autocomplete="current-password" aria-describedby="password-error" required>
           <p class="form-error" id="password-error" hidden></p>
         </div>
-        <button class="button" type="submit">Войти</button>
+        <button class="button" type="submit" disabled>Войти</button>
         <p class="form-status" role="status" hidden></p>
       </form>
       <p class="account-switch">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>

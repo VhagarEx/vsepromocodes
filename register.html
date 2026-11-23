@@ -24,7 +24,8 @@
     <section class="account-card">
       <h1>Регистрация</h1>
       <p class="account-note">Учебная форма. Введённые данные не сохраняются.</p>
-      <form class="account-form" id="register-form" novalidate>
+      <noscript><p>Включите JavaScript, чтобы использовать форму.</p></noscript>
+      <form method="post" class="account-form" id="register-form" novalidate>
         <div class="form-field">
           <label for="full-name">ФИО</label>
           <input id="full-name" name="full-name" type="text" autocomplete="name" aria-describedby="full-name-error" required>
@@ -51,7 +52,7 @@
           <input id="password-repeat" name="password-repeat" type="password" autocomplete="new-password" aria-describedby="password-repeat-error" required>
           <p class="form-error" id="password-repeat-error" hidden></p>
         </div>
-        <button class="button" type="submit">Проверить данные</button>
+        <button class="button" type="submit" disabled>Проверить данные</button>
         <p class="form-status" role="status" hidden></p>
       </form>
       <p class="account-switch">Уже есть аккаунт? <a href="login.html">Войти</a></p>
