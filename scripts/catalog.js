@@ -23,7 +23,7 @@ function makeCard(offer) {
   card.append(cardTemplate.content.cloneNode(true));
 
   const store = stores[offer.store];
-  card.querySelector('img').src = 'assets/logos/' + store.logo;
+  card.querySelector('img').src = '/static/assets/logos/' + store.logo;
   card.querySelector('.offer-store').textContent = store.name;
   card.querySelector('h3').textContent = offerTitle(offer);
   card.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
@@ -153,7 +153,7 @@ if (storeFilter) {
     link.className = 'home-store';
     link.href = storePageUrl(id);
     logo.alt = store.name;
-    logo.src = 'assets/logos/' + store.logo;
+    logo.src = '/static/assets/logos/' + store.logo;
     link.append(logo);
     storeNav.append(link);
   }

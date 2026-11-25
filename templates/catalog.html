@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Каталог — Все промокоды{% endblock %}
+{% block scripts %}<script type="module" src="{% static 'scripts/catalog.js' %}"></script>{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <section class="directory-intro">
+      <h1>Каталог предложений</h1>
+    </section>
+    <div class="directory" data-directory="catalog">
+      <aside class="store-sidebar">
+        <h2>Магазины</h2>
+        <nav class="store-list" id="stores" aria-label="По магазинам"></nav>
+        <div class="store-filter">
+          <label for="store-filter">Магазин</label>
+          <select id="store-filter"><option value="">Все магазины</option></select>
+        </div>
+        <noscript><p>Включите JavaScript, чтобы выбрать магазин.</p></noscript>
+      </aside>
+      <section aria-label="Предложения">
+        <div class="catalog-filters" role="group" aria-label="Тип предложения">
+          <button type="button" data-filter="all" aria-pressed="true">Все</button>
+          <button type="button" data-filter="code" aria-pressed="false">Промокоды</button>
+          <button type="button" data-filter="link" aria-pressed="false">Акции</button>
+        </div>
+        <p class="search-context" id="search-context" hidden>
+          Поиск по запросу «<span id="search-query"></span>».
+          <a href="{% url 'catalog' %}" id="clear-search">Сбросить поиск</a>
+        </p>
+        <p class="results-count" id="results-count" role="status"></p>
+        <div class="offer-list" id="offers"></div>
+        <noscript><p>Включите JavaScript, чтобы посмотреть предложения.</p></noscript>
+      </section>
+    </div>
+    {% include '_offer_dialog.html' %}
+  </main>
+{{ offers|json_script:"offers-data" }}
+{% endblock %}

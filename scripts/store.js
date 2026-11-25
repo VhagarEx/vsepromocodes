@@ -16,7 +16,7 @@ if (!store) {
   document.querySelector('#store-heading').textContent = heading;
 
   const logo = document.querySelector('#store-logo');
-  logo.src = 'assets/logos/' + store.logo;
+  logo.src = '/static/assets/logos/' + store.logo;
   logo.alt = store.name;
 
   const filters = [...layout.querySelectorAll('[data-store-type]')];

@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Все промокоды{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'styles/site.css' %}">
+  <script type="module" src="{% static 'scripts/header.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="{% url 'home' %}"{% if request.resolver_match.url_name == 'home' %} aria-current="page"{% endif %}>
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Все промокоды</span>
+      </a>
+      <nav class="site-nav" aria-label="Каталог">
+        <a href="{% url 'catalog' %}"{% if request.resolver_match.url_name == 'catalog' %} aria-current="page"{% endif %}>Каталог</a>
+        <details class="header-menu">
+          <summary>Магазины</summary>
+          <ul class="menu-panel" id="header-stores">
+            <li><a href="{% url 'catalog' %}"{% if request.resolver_match.url_name == 'catalog' %} aria-current="page"{% endif %}>Все магазины</a></li>
+          </ul>
+        </details>
+        <details class="header-menu">
+          <summary>Предложения</summary>
+          <ul class="menu-panel">
+            <li><a href="{% url 'catalog' %}?type=code">Промокоды</a></li>
+            <li><a href="{% url 'catalog' %}?type=link">Акции</a></li>
+          </ul>
+        </details>
+      </nav>
+      <form class="header-search" role="search" action="{% url 'catalog' %}" method="get">
+        <input id="site-search" type="search" name="q" maxlength="100" placeholder="Поиск по каталогу" aria-label="Поиск по каталогу">
+        <button type="submit" aria-label="Найти"><span class="search-icon" aria-hidden="true"></span></button>
+      </form>
+      <details class="header-menu account-menu">
+        <summary>Аккаунт</summary>
+        <ul class="menu-panel">
+          <li><a href="{% url 'login' %}"{% if request.resolver_match.url_name == 'login' %} aria-current="page"{% endif %}>Вход</a></li>
+          <li><a href="{% url 'register' %}"{% if request.resolver_match.url_name == 'register' %} aria-current="page"{% endif %}>Регистрация</a></li>
+        </ul>
+      </details>
+    </div>
+  </header>
+  {{ site_stores|json_script:"stores-data" }}
+  {% block main %}{% endblock %}
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span>Все промокоды</span>
+      <p>Учебный проект. Предложения демонстрационные.</p>
+    </div>
+  </footer>
+</body>
+</html>

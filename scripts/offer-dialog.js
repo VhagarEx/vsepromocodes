@@ -23,7 +23,7 @@ export function formatExpiry(value) {
 
 export function openOffer(offer) {
   const store = stores[offer.store];
-  logo.src = 'assets/logos/' + store.logo;
+  logo.src = '/static/assets/logos/' + store.logo;
   logo.alt = store.name;
   details.open = false;
   title.textContent = offerTitle(offer);

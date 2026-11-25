@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Все промокоды — скидки на доставку{% endblock %}
+{% block scripts %}<script type="module" src="{% static 'scripts/catalog.js' %}"></script>{% endblock %}
+{% block main %}
+  <main id="main" class="container page home-page">
+    <section class="home-feature">
+      <div class="feature-copy">
+        <h1>Промокоды на доставку еды</h1>
+        <p>Скидки на продукты из магазинов и заказы из ресторанов.</p>
+        <a class="button" href="{% url 'catalog' %}">Смотреть предложения</a>
+      </div>
+    </section>
+    <section class="home-section" aria-labelledby="offers-heading">
+      <div class="section-heading">
+        <h2 id="offers-heading">Предложения магазинов</h2>
+        <a href="{% url 'catalog' %}">Весь каталог</a>
+      </div>
+      <div class="offer-list" id="offers"></div>
+      <noscript><p>Включите JavaScript, чтобы посмотреть предложения.</p></noscript>
+    </section>
+    <section class="home-section" aria-labelledby="stores-heading">
+      <h2 id="stores-heading">Магазины и сервисы</h2>
+      <nav class="home-stores" id="stores" aria-label="Перейти к предложениям магазина"></nav>
+    </section>
+    <section class="home-section" aria-labelledby="types-heading">
+      <h2 id="types-heading">По типу предложения</h2>
+      <div class="offer-types">
+        <a class="type-link" href="catalog.html?type=code">
+          <strong>Промокоды</strong>
+          <span>Код вводится при оформлении заказа</span>
+        </a>
+        <a class="type-link" href="catalog.html?type=link">
+          <strong>Акции</strong>
+          <span>Условия и скидка на странице магазина</span>
+        </a>
+      </div>
+    </section>
+    <section class="home-section help-section" aria-labelledby="help-heading">
+      <h2 id="help-heading">Как воспользоваться предложением</h2>
+      <details>
+        <summary>Куда ввести промокод?</summary>
+        <p>Нажмите «Показать код» и скопируйте его. Вставьте код в поле для промокода в корзине магазина перед оплатой.</p>
+      </details>
+      <details>
+        <summary>Почему у акции нет кода?</summary>
+        <p>Нажмите на карточку акции. На сайте магазина можно проверить условия и оформить заказ.</p>
+      </details>
+    </section>
+    {% include '_offer_dialog.html' %}
+  </main>
+{{ offers|json_script:"offers-data" }}
+{% endblock %}
