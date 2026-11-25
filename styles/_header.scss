@@ -94,7 +94,7 @@
   box-shadow: 0 .5rem 1.5rem rgba(v.$ink, .15);
   list-style: none;
 
-  a {
+  a, .account-logout {
     display: flex;
     align-items: center;
     min-height: 2.5rem;
@@ -110,6 +110,22 @@
 }
 
 .account-menu .menu-panel { left: auto; right: 0; }
+
+.account-name {
+  max-width: 6rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.account-identity {
+  padding: .35rem .55rem;
+  color: v.$muted;
+  font-size: .85rem;
+  overflow-wrap: anywhere;
+}
+
+.account-menu .menu-panel { max-width: min(16rem, 80vw); }
+.account-logout { width: 100%; border: 0; background: transparent; }
 
 .header-search {
   display: grid;

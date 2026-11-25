@@ -7,3 +7,8 @@ class User(AbstractUser):
     email = models.EmailField("Email", unique=True)
 
     REQUIRED_FIELDS = ["email"]
+
+    class Meta(AbstractUser.Meta):
+        constraints = [
+            models.UniqueConstraint(models.functions.Lower("email"), name="user_email_unique_ci"),
+        ]

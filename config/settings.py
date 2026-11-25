@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
+    "django.contrib.messages",
     "django.contrib.staticfiles",
     "accounts",
     "promos",
@@ -22,6 +23,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
 ]
 ROOT_URLCONF = "config.urls"
 
@@ -31,6 +33,8 @@ TEMPLATES = [{
     "APP_DIRS": True,
     "OPTIONS": {"context_processors": [
         "django.template.context_processors.request",
+        "django.contrib.auth.context_processors.auth",
+        "django.contrib.messages.context_processors.messages",
         "promos.context.catalog_stores",
     ]},
 }]
@@ -40,6 +44,13 @@ DATABASES = {"default": {
     "NAME": BASE_DIR / "db.sqlite3",
 }}
 AUTH_USER_MODEL = "accounts.User"
+AUTHENTICATION_BACKENDS = ["accounts.backends.UsernameOrEmailBackend"]
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 8}},
+]
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "catalog"
+LOGOUT_REDIRECT_URL = "home"
 LANGUAGE_CODE = "ru"
 TIME_ZONE = "Europe/Astrakhan"
 USE_TZ = True

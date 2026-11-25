@@ -1,26 +1,15 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}Вход — Все промокоды{% endblock %}
-{% block scripts %}<script type="module" src="{% static 'scripts/forms.js' %}"></script>{% endblock %}
 {% block main %}
   <main id="main" class="container page account-page">
     <section class="account-card">
       <h1>Вход</h1>
-      <p class="account-note">Учебная форма. Вход в аккаунт здесь не выполняется.</p>
-      <noscript><p>Включите JavaScript, чтобы использовать форму.</p></noscript>
-      <form method="post" class="account-form" id="login-form">
-        <div class="form-field">
-          <label for="login">Логин или email</label>
-          <input id="login" name="login" type="text" autocomplete="username" aria-describedby="login-error" required>
-          <p class="form-error" id="login-error" hidden></p>
-        </div>
-        <div class="form-field">
-          <label for="password">Пароль</label>
-          <input id="password" name="password" type="password" autocomplete="current-password" aria-describedby="password-error" required>
-          <p class="form-error" id="password-error" hidden></p>
-        </div>
-        <button class="button" type="submit" disabled>Войти</button>
-        <p class="form-status" role="status" hidden></p>
+      {% for message in messages %}<p class="form-status" role="status">{{ message }}</p>{% endfor %}
+      <form method="post" class="account-form management-form" novalidate>
+        {% csrf_token %}
+        {% include '_form_fields.html' %}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        <button class="button" type="submit">Войти</button>
       </form>
       <p class="account-switch">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
     </section>

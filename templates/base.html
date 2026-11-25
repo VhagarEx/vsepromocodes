@@ -38,10 +38,18 @@
         <button type="submit" aria-label="Найти"><span class="search-icon" aria-hidden="true"></span></button>
       </form>
       <details class="header-menu account-menu">
-        <summary>Аккаунт</summary>
+        <summary>{% if user.is_authenticated %}<span class="account-name">{{ user.username }}</span>{% else %}Аккаунт{% endif %}</summary>
         <ul class="menu-panel">
+          {% if user.is_authenticated %}
+            <li class="account-identity">{{ user.full_name|default:user.username }}</li>
+            <li><form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="account-logout">Выйти</button>
+            </form></li>
+          {% else %}
           <li><a href="{% url 'login' %}"{% if request.resolver_match.url_name == 'login' %} aria-current="page"{% endif %}>Вход</a></li>
           <li><a href="{% url 'register' %}"{% if request.resolver_match.url_name == 'register' %} aria-current="page"{% endif %}>Регистрация</a></li>
+          {% endif %}
         </ul>
       </details>
     </div>

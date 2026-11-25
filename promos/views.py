@@ -44,15 +44,6 @@ def store_page(request):
 
 
 @require_safe
-def register(request):
-    return render(request, "register.html")
-
-
-@require_safe
-def login(request):
-    return render(request, "login.html")
-
-@require_safe
 def offer_detail(request):
     try:
         pk = int(request.GET.get("id", ""))
