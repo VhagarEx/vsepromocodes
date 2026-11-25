@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Мои обращения — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <h1>Мои обращения</h1>
+    <ul class="management-list">
+      {% for report in reports %}
+        <li>
+          <div>
+            <a href="{% url 'report-detail' report.pk %}">{{ report.offer.display_title }}</a>
+            <p class="entry-meta">{{ report.offer.store.name }} · {{ report.get_status_display }} · {{ report.created_at|date:"d.m.Y" }}</p>
+          </div>
+        </li>
+      {% empty %}
+        <li>Обращений пока нет. Сообщить о проблеме можно со страницы предложения.</li>
+      {% endfor %}
+    </ul>
+    <p class="results-count"><a href="{% url 'catalog' %}">Весь каталог</a></p>
+  </main>
+{% endblock %}

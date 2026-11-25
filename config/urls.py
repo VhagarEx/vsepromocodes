@@ -5,7 +5,7 @@ from django.urls import path
 from accounts.forms import LoginForm
 from accounts.views import register
 
-from promos import views
+from promos import report_views, views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,4 +23,9 @@ urlpatterns = [
     path("manage/new/", views.offer_create, name="offer-create"),
     path("manage/<int:pk>/edit/", views.offer_edit, name="offer-edit"),
     path("manage/<int:pk>/delete/", views.offer_delete, name="offer-delete"),
+    path("reports/", report_views.report_list, name="report-list"),
+    path("reports/<int:pk>/", report_views.report_detail, name="report-detail"),
+    path("reports/<int:pk>/edit/", report_views.report_edit, name="report-edit"),
+    path("reports/<int:pk>/delete/", report_views.report_delete, name="report-delete"),
+    path("offer/<int:offer_id>/report/", report_views.report_create, name="report-create"),
 ]

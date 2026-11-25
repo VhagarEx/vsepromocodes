@@ -5,6 +5,7 @@
     <div class="entry-panel">
       <h1>Удалить предложение?</h1>
       <p>{{ offer.store.name }} · {{ offer.display_title }}</p>
+      {% if error %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
       <form class="entry-actions" method="post">
         {% csrf_token %}
         <button class="button" type="submit">Удалить предложение</button>

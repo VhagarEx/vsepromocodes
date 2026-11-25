@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Обращение — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <a class="store-back" href="{% url 'report-list' %}">Мои обращения</a>
+    <div class="entry-panel">
+      <h1>Обращение №{{ report.pk }}</h1>
+      <p class="entry-meta">{{ report.get_status_display }} · {{ report.created_at|date:"d.m.Y" }}</p>
+      <p><a href="{% url 'offer-detail' %}?id={{ report.offer_id }}">{{ report.offer.store.name }} · {{ report.offer.display_title }}</a></p>
+      {{ report.comment|linebreaks }}
+      <div class="entry-actions">
+        <a href="{% url 'report-edit' report.pk %}">Редактировать</a>
+        <a href="{% url 'report-delete' report.pk %}">Удалить</a>
+      </div>
+    </div>
+  </main>
+{% endblock %}

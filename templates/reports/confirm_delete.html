@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Удалить обращение — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <div class="entry-panel">
+      <h1>Удалить обращение?</h1>
+      {{ report.comment|linebreaks }}
+      <form class="entry-actions" method="post">
+        {% csrf_token %}
+        <button class="button" type="submit">Удалить обращение</button>
+        <a href="{% url 'report-detail' report.pk %}">Отмена</a>
+      </form>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Страница не найдена — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <div class="entry-panel">
+      <h1>Страница не найдена</h1>
+      <p>Проверьте адрес или вернитесь в каталог.</p>
+      <a href="{% url 'catalog' %}">Весь каталог</a>
+    </div>
+  </main>
+{% endblock %}

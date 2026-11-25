@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Offer
+from .models import Offer, Report
 
 
 class OfferForm(forms.ModelForm):
@@ -17,3 +17,10 @@ class OfferForm(forms.ModelForm):
             "code": "Заполните для промокода.",
             "url": "Заполните для акции по ссылке.",
         }
+
+class ReportForm(forms.ModelForm):
+    class Meta:
+        model = Report
+        fields = ("comment",)
+        widgets = {"comment": forms.Textarea(attrs={"rows": 5})}
+        help_texts = {"comment": "Опишите проблему, до 1000 символов."}

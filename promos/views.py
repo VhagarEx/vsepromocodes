@@ -1,3 +1,4 @@
+from django.db.models import ProtectedError
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods, require_safe
@@ -101,7 +102,13 @@ def offer_delete(request, pk):
         return render(request, "offer_not_found.html", status=404)
 
     if request.method == "POST":
-        offer.delete()
+        try:
+            offer.delete()
+        except ProtectedError:
+            return render(request, "offer_confirm_delete.html", {
+                "offer": offer,
+                "error": "Предложение связано с обращениями пользователей. Удаление недоступно.",
+            }, status=409)
         return redirect("offer-management")
 
     return render(request, "offer_confirm_delete.html", {"offer": offer})
