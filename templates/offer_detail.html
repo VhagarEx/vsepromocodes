@@ -21,8 +21,10 @@
         {% else %}
           <a class="button" href="{{ offer.url }}">Перейти к акции</a>
         {% endif %}
+        {% if user.is_staff %}
         <a href="{% url 'offer-edit' offer.pk %}">Редактировать</a>
         <a href="{% url 'offer-delete' offer.pk %}">Удалить</a>
+        {% endif %}
       </div>
     </div>
     {% if offer.type == 'code' %}

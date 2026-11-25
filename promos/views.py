@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods, require_safe
 
+from accounts.permissions import admin_required
+
 from .forms import OfferForm
 from .models import Offer
 
@@ -60,6 +62,7 @@ def offer_detail(request):
     })
 
 
+@admin_required
 @require_safe
 def offer_management(request):
     return render(request, "offer_management.html", {
@@ -67,11 +70,13 @@ def offer_management(request):
     })
 
 
+@admin_required
 @require_http_methods(["GET", "POST"])
 def offer_create(request):
     return edit_form(request, "Добавить предложение")
 
 
+@admin_required
 @require_http_methods(["GET", "POST"])
 def offer_edit(request, pk):
     offer = Offer.objects.filter(pk=pk).first()
@@ -88,6 +93,7 @@ def edit_form(request, heading, offer=None):
     return render(request, "offer_form.html", {"form": form, "heading": heading})
 
 
+@admin_required
 @require_http_methods(["GET", "POST"])
 def offer_delete(request, pk):
     offer = Offer.objects.select_related("store").filter(pk=pk).first()

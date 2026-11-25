@@ -42,6 +42,10 @@
         <ul class="menu-panel">
           {% if user.is_authenticated %}
             <li class="account-identity">{{ user.full_name|default:user.username }}</li>
+            {% if user.is_staff %}
+              <li><a href="{% url 'offer-management' %}">Управление каталогом</a></li>
+              <li><a href="{% url 'admin:index' %}">Админ-панель</a></li>
+            {% endif %}
             <li><form action="{% url 'logout' %}" method="post">
               {% csrf_token %}
               <button type="submit" class="account-logout">Выйти</button>

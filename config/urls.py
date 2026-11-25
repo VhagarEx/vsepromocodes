@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
@@ -7,6 +8,7 @@ from accounts.views import register
 from promos import views
 
 urlpatterns = [
+    path("admin/", admin.site.urls),
     path("", views.home),
     path("index.html", views.home, name="home"),
     path("catalog.html", views.catalog, name="catalog"),

@@ -9,6 +9,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") or (
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "[::1]"]
 
 INSTALLED_APPS = [
+    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
