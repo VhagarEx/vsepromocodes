@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ heading }} — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page account-page">
+    <section class="account-card">
+      <a class="store-back" href="{% url 'offer-management' %}">Управление каталогом</a>
+      <h1>{{ heading }}</h1>
+      {% if form.errors %}
+        <p class="form-error" role="alert">Проверьте отмеченные поля.</p>
+      {% endif %}
+      <form class="account-form management-form" method="post" novalidate>
+        {% csrf_token %}
+        {% for error in form.non_field_errors %}<p class="form-error">{{ error }}</p>{% endfor %}
+        {% for field in form %}
+          <div class="form-field">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}<small id="{{ field.auto_id }}_helptext">{{ field.help_text }}</small>{% endif %}
+            {% if field.errors %}
+              <ul class="form-error" id="{{ field.auto_id }}_error">
+                {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <button class="button" type="submit">Сохранить предложение</button>
+      </form>
+    </section>
+  </main>
+{% endblock %}

@@ -37,6 +37,8 @@ if (!store) {
     row.querySelector('.store-offer-type').textContent = hasCode ? 'Промокод' : 'Акция';
     row.querySelector('.offer-date').textContent = formatExpiry(offer.expires);
     row.querySelector('.store-offer-terms').textContent = offer.terms;
+    const detail = row.querySelector('.store-offer-detail');
+    detail.search = new URLSearchParams({ id: offer.id });
 
     if (hasCode) {
       headline.textContent = offer.title;

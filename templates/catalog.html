@@ -4,8 +4,9 @@
 {% block scripts %}<script type="module" src="{% static 'scripts/catalog.js' %}"></script>{% endblock %}
 {% block main %}
   <main id="main" class="container page">
-    <section class="directory-intro">
+    <section class="directory-intro section-heading">
       <h1>Каталог предложений</h1>
+      <a href="{% url 'offer-management' %}">Управление каталогом</a>
     </section>
     <div class="directory" data-directory="catalog">
       <aside class="store-sidebar">

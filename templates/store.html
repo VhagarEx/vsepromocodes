@@ -48,10 +48,13 @@
           </div>
           <button class="button offer-code-button" type="button" hidden>Показать код</button>
         </div>
-        <details class="store-offer-details">
-          <summary>Условия</summary>
-          <p class="store-offer-terms"></p>
-        </details>
+        <div class="store-offer-links">
+          <details class="store-offer-details">
+            <summary>Условия</summary>
+            <p class="store-offer-terms"></p>
+          </details>
+          <a class="store-offer-detail" href="{% url 'offer-detail' %}">О предложении</a>
+        </div>
       </article>
     </template>
     {% include '_offer_dialog.html' %}

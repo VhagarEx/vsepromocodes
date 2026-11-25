@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Предложение не найдено — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <div class="entry-panel">
+      <h1>Предложение не найдено</h1>
+      <p>Проверьте адрес или выберите другое предложение в каталоге.</p>
+      <a href="{% url 'catalog' %}">Весь каталог</a>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,71 @@
+@use 'variables' as v;
+
+.entry-panel {
+  display: grid;
+  gap: .85rem;
+  max-width: 50rem;
+  padding: clamp(1rem, 4vw, 1.75rem);
+  border: 1px solid v.$line;
+  border-radius: v.$radius;
+  background: v.$surface;
+  overflow-wrap: anywhere;
+}
+
+.entry-meta { color: v.$muted; font-size: .875rem; }
+
+.entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .55rem 1rem;
+}
+
+.management-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 1px solid v.$line;
+  border-radius: v.$radius;
+  background: v.$surface;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .55rem 1.5rem;
+    padding: .85rem 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  li + li { border-top: 1px solid v.$line; }
+}
+
+.management-form {
+  select, textarea {
+    width: 100%;
+    padding: .55rem .7rem;
+    border: 1px solid v.$input-line;
+    border-radius: 6px;
+    background: v.$surface;
+    color: v.$ink;
+    font: inherit;
+  }
+
+  textarea { resize: vertical; }
+  .form-error { margin: 0; padding-inline-start: 1.15rem; }
+}
+
+.store-offer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  padding: .5rem .95rem;
+  border-top: 1px solid v.$line;
+  font-size: .9rem;
+
+  .store-offer-details { padding: 0; border: 0; }
+  .store-offer-details[open] { flex: 1 0 100%; }
+}

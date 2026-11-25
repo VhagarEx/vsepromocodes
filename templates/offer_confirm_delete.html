@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Удаление предложения — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <div class="entry-panel">
+      <h1>Удалить предложение?</h1>
+      <p>{{ offer.store.name }} · {{ offer.display_title }}</p>
+      <form class="entry-actions" method="post">
+        {% csrf_token %}
+        <button class="button" type="submit">Удалить предложение</button>
+        <a href="{% url 'offer-detail' %}?id={{ offer.pk }}">Отмена</a>
+      </form>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Управление каталогом — Все промокоды{% endblock %}
+{% block main %}
+  <main id="main" class="container page">
+    <a class="store-back" href="{% url 'catalog' %}">Весь каталог</a>
+    <div class="section-heading">
+      <h1>Управление каталогом</h1>
+      <a class="button" href="{% url 'offer-create' %}">Добавить предложение</a>
+    </div>
+    <ul class="management-list">
+      {% for offer in offers %}
+        <li>
+          <div>
+            <a href="{% url 'offer-detail' %}?id={{ offer.pk }}">{{ offer.display_title }}</a>
+            <p class="entry-meta">{{ offer.store.name }} · {{ offer.get_type_display }}</p>
+          </div>
+          <div class="entry-actions">
+            <a href="{% url 'offer-edit' offer.pk %}">Редактировать</a>
+            <a href="{% url 'offer-delete' offer.pk %}">Удалить</a>
+          </div>
+        </li>
+      {% empty %}
+        <li>Предложений пока нет.</li>
+      {% endfor %}
+    </ul>
+  </main>
+{% endblock %}
