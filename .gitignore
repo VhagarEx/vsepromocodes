@@ -1,2 +1,7 @@
 node_modules/
 styles/site.css
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+db.sqlite3-*

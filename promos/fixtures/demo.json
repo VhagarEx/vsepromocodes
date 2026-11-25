@@ -1,0 +1,146 @@
+[
+  {
+    "model": "promos.store",
+    "pk": 1,
+    "fields": {
+      "slug": "pyaterochka",
+      "name": "Пятёрочка",
+      "coupons_name": "Пятёрочки",
+      "logo": "pyaterochka.webp"
+    }
+  },
+  {
+    "model": "promos.store",
+    "pk": 2,
+    "fields": {
+      "slug": "samokat",
+      "name": "Самокат",
+      "coupons_name": "Самоката",
+      "logo": "samokat.png"
+    }
+  },
+  {
+    "model": "promos.store",
+    "pk": 3,
+    "fields": {
+      "slug": "eda",
+      "name": "Яндекс Еда",
+      "coupons_name": "Яндекс Еды",
+      "logo": "yandex-eda.png"
+    }
+  },
+  {
+    "model": "promos.store",
+    "pk": 4,
+    "fields": {
+      "slug": "lavka",
+      "name": "Яндекс Лавка",
+      "coupons_name": "Яндекс Лавки",
+      "logo": "yandex-lavka.png"
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 1,
+    "fields": {
+      "store": 1,
+      "type": "code",
+      "discount": "400 ₽",
+      "title": "на первый заказ",
+      "expires": "2026-12-31",
+      "code": "START400",
+      "terms": "Для первого заказа с доставкой от 1 200 ₽. Введите код при оформлении."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 2,
+    "fields": {
+      "store": 2,
+      "type": "link",
+      "discount": "До 25%",
+      "title": "на продукты недели",
+      "expires": "2026-12-20",
+      "url": "https://samokat.ru/",
+      "terms": "Скидка применяется к товарам из подборки недели. Ассортимент зависит от адреса доставки."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 3,
+    "fields": {
+      "store": 3,
+      "type": "code",
+      "discount": "500 ₽",
+      "title": "на первый заказ из ресторана",
+      "expires": "2026-12-31",
+      "code": "EDA500",
+      "terms": "Для первого заказа из ресторана на сумму от 1 500 ₽ без учёта доставки."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 4,
+    "fields": {
+      "store": 4,
+      "type": "link",
+      "discount": "До 30%",
+      "title": "на подборку товаров",
+      "expires": "2026-12-27",
+      "url": "https://lavka.yandex.ru/",
+      "terms": "Скидка действует на отмеченные товары из подборки. Доступность товаров зависит от адреса."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 5,
+    "fields": {
+      "store": 1,
+      "type": "link",
+      "discount": "До 20%",
+      "title": "на товары из подборки",
+      "expires": "2026-12-27",
+      "url": "https://5ka.ru/",
+      "terms": "Скидка действует на товары из подборки при заказе доставки. Итоговая цена видна в корзине."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 6,
+    "fields": {
+      "store": 2,
+      "type": "code",
+      "discount": "300 ₽",
+      "title": "на доставку продуктов",
+      "expires": "2026-12-31",
+      "code": "SAMOKAT300",
+      "terms": "Для первого заказа на сумму от 1 000 ₽. Укажите код в корзине."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 7,
+    "fields": {
+      "store": 3,
+      "type": "link",
+      "discount": "До 35%",
+      "title": "в ресторанах-партнёрах",
+      "expires": "2026-12-27",
+      "url": "https://eda.yandex.ru/",
+      "terms": "В акции участвуют отдельные рестораны и блюда. Список зависит от города и адреса доставки."
+    }
+  },
+  {
+    "model": "promos.offer",
+    "pk": 8,
+    "fields": {
+      "store": 4,
+      "type": "code",
+      "discount": "350 ₽",
+      "title": "на первый заказ в Лавке",
+      "expires": "2026-12-31",
+      "code": "LAVKA350",
+      "terms": "Для первого заказа от 1 100 ₽. Введите код перед оплатой."
+    }
+  }
+]
