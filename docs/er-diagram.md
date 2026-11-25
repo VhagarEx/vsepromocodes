@@ -1,8 +1,25 @@
-# ER-диаграмма каталога
+# ER-диаграмма каталога и обращений
 
 ```mermaid
 erDiagram
-    promos_store ||--o{ promos_offer : "публикует"
+    promos_store ||--o{ promos_offer : "содержит"
+    promos_offer ||--o{ promos_report : "получает"
+    accounts_user ||--o{ promos_report : "создаёт"
+
+    accounts_user {
+        integer id PK
+        varchar(150) username UK
+        varchar(254) email UK
+        varchar(128) password
+        varchar(160) full_name
+        varchar(150) first_name
+        varchar(150) last_name
+        bool is_staff
+        bool is_superuser
+        bool is_active
+        datetime last_login
+        datetime date_joined
+    }
 
     promos_store {
         integer id PK
@@ -23,10 +40,18 @@ erDiagram
         varchar(64) code
         varchar(200) url
     }
+
+    promos_report {
+        integer id PK
+        bigint user_id FK
+        bigint offer_id FK
+        text comment
+        varchar(11) status
+        datetime created_at
+    }
 ```
 
-У магазина может быть несколько предложений или ни одного. У каждого предложения ровно один магазин. Внешний ключ `store_id` ссылается на `promos_store.id` и индексируется. Django защищает магазин от удаления, пока с ним связаны предложения.
-
-У промокода `type = code` заполнено поле `code`, а у акции `type = link` заполнено поле `url`. Второе поле содержит пустую строку. Это правило проверяют и серверная форма, и ограничение `offer_code_or_link` в SQLite.
-
-[SQL-схема каталога](schema.sql) сгенерирована из миграции `promos.0001_initial`. Django создаёт собственные служебные таблицы и модель пользователя отдельными миграциями.
+- Еmail уникален независимо от регистра. `password` хранит хеш Django. Активный пользователь с `is_staff = true` имеет роль ADMIN. Доступ к списку обращений в Django Admin дополнительно определяется разрешениями модели.
+- У каждого обращения ровно один автор и одно предложение. Пользовательский интерфейс выбирает обращения по `user_id` текущего пользователя. Статусы в базе: `new`, `in_progress`, `done`.
+- Нельзя удалить предложение, пока к нему привязаны обращения. В промокоде заполнен `code`, в акции заполнен `url`.
+- [SQL-схема](schema.sql) показывает четыре таблицы предметной области. Миграции Django дополнительно создают таблицы групп, разрешений, журнала администрирования и сессий.
